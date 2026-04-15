@@ -16,7 +16,6 @@ Proactive monitoring heartbeat: check cluster health, identify issues, investiga
 On every heartbeat (every 1 hour). This is a proactive monitoring skill — it runs even when no ticket is assigned.
 
 **Cluster scope:** staging only (production monitoring to be added later).
-**Kubeconfig:** `/etc/paperclip/kubeconfigs/staging`
 **Reports to:** CTO agent (never directly to Board unless human action is required).
 
 ---
@@ -37,7 +36,7 @@ Five checks, executed sequentially. Stop at the first failure, resolve or escala
 ### Check 1: ArgoCD Sync Status
 
 ```bash
-kubectl --kubeconfig /etc/paperclip/kubeconfigs/staging get applications -n argocd
+kubectl get applications -n argocd
 ```
 
 - If any app is `OutOfSync` or `Degraded`: investigate the app diff, identify root cause, fix or escalate to CTO.
@@ -48,7 +47,7 @@ kubectl --kubeconfig /etc/paperclip/kubeconfigs/staging get applications -n argo
 ### Check 2: Pod Health
 
 ```bash
-kubectl --kubeconfig /etc/paperclip/kubeconfigs/staging get pods -A --field-selector=status.phase!=Running,status.phase!=Succeeded
+kubectl get pods -A --field-selector=status.phase!=Running,status.phase!=Succeeded
 ```
 
 - For any non-Running / non-Succeeded pod: check logs and events, identify root cause.
@@ -67,7 +66,7 @@ kubectl --kubeconfig /etc/paperclip/kubeconfigs/staging get pods -A --field-sele
 ### Check 4: Certificate Expiry
 
 ```bash
-kubectl --kubeconfig /etc/paperclip/kubeconfigs/staging get certificates -A
+kubectl get certificates -A
 ```
 
 - Flag any certificate expiring in less than 14 days.

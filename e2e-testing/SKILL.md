@@ -99,7 +99,7 @@ Before writing any test, verify that **all** implementation code is deployed on 
 
 2. **Check which image is deployed on staging** for each impacted service:
    ```bash
-   kubectl --kubeconfig /etc/paperclip/kubeconfigs/staging get deployment <app-deployment> -n staging -o jsonpath='{.spec.template.spec.containers[0].image}'
+   kubectl get deployment <app-deployment> -n staging -o jsonpath='{.spec.template.spec.containers[0].image}'
    ```
    The image tag is a commit SHA from the CI build. The deployed image may contain commits **newer** than the ones you are testing — that is expected. What matters is that every merge commit is **included** in the deployed image.
 
@@ -112,7 +112,7 @@ Before writing any test, verify that **all** implementation code is deployed on 
 
 4. **Verify the pods are healthy**:
    ```bash
-   kubectl --kubeconfig /etc/paperclip/kubeconfigs/staging get pods -n staging -l app=<app-name>
+   kubectl get pods -n staging -l app=<app-name>
    ```
    All pods must be `Running` and `Ready`. If pods are in `CrashLoopBackOff` or `Pending`, do not start testing — escalate to DevOps.
 

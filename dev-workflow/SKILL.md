@@ -235,6 +235,7 @@ Before opening a PR, walk through this checklist. Every item must pass.
 - [ ] Run `pnpm test:coverage` and verify
 
 ### Code quality
+- [ ] `pnpm install` ran at worktree root — `pnpm-lock.yaml` is up to date and committed
 - [ ] `pnpm lint` — 0 errors
 - [ ] `pnpm typecheck` — 0 errors
 - [ ] `pnpm test` — 0 failures
@@ -249,11 +250,14 @@ Before opening a PR, walk through this checklist. Every item must pass.
 Run the full verification sequence from the worktree root:
 
 ```bash
+pnpm install     # sync pnpm-lock.yaml — commit any changes before continuing
 pnpm lint        # Biome linting — must pass with 0 errors
 pnpm typecheck   # TypeScript type checking — must pass with 0 errors
 pnpm test        # Vitest test suite — all tests must pass
 pnpm build       # Production build — must succeed
 ```
+
+If `pnpm install` modifies `pnpm-lock.yaml`, commit the updated file before pushing. A stale lockfile will break CI.
 
 Do not open a PR if any of these fails (Iron Law 6).
 

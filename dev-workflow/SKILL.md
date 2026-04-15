@@ -27,7 +27,7 @@ When you are assigned a ticket by the PO, or re-assigned by the Lead Dev after r
 
 5. **ONE BRANCH, ONE PR, ONE TICKET** — never combine multiple tickets into a single branch or PR. Each ticket gets its own worktree, branch, and PR.
 
-6. **NO PR WITHOUT GREEN CHECKS** — `pnpm lint`, `pnpm typecheck`, `pnpm test`, and `pnpm build` must all pass before opening a PR. No exceptions. Do not open a PR "to see if CI passes."
+6. **NO PR WITHOUT GREEN CHECKS** — `pnpm lint`, `pnpm typecheck`, `pnpm test`, and `pnpm build` must all pass before opening a PR. No exceptions. Do not open a PR "to see if CI passes." All commands must be run **from the worktree root** so Turborepo covers every affected package — running them from inside a package directory is not sufficient and will silently miss failures in sibling packages.
 
 7. **TEST FIRST** — write failing tests before implementation code. Verify the test fails for the right reason, then implement the minimum code to make it pass, then refactor. The test-driven-development external skill has the full red-green-refactor protocol.
 
@@ -247,7 +247,7 @@ Before opening a PR, walk through this checklist. Every item must pass.
 
 ## Before Opening a PR
 
-Run the full verification sequence from the worktree root:
+Run the full verification sequence **from the worktree root** (not from within a package subdirectory — turbo runs checks across all packages):
 
 ```bash
 pnpm install     # sync pnpm-lock.yaml — commit any changes before continuing
@@ -257,7 +257,11 @@ pnpm test        # Vitest test suite — all tests must pass
 pnpm build       # Production build — must succeed
 ```
 
+**Critical: always run these commands from the workspace root.** Running `pnpm lint` from inside a package directory only lints that package — CI runs `turbo run lint` across all 23 packages. A lint error in any package (even one you didn't touch directly) will fail CI.
+
 If `pnpm install` modifies `pnpm-lock.yaml`, commit the updated file before pushing. A stale lockfile will break CI.
+
+If `pnpm lint` fails due to formatting, run `pnpm lint --write` (or `biome check --write ./` from the failing package) to auto-fix formatting, then re-run `pnpm lint` to confirm 0 errors before committing.
 
 Do not open a PR if any of these fails (Iron Law 6).
 

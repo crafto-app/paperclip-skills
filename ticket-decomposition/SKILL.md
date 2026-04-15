@@ -21,7 +21,15 @@ When a story issue is assigned to you by the Lead Dev with status `todo` and a t
 
 ### 1. NO TICKET WITHOUT DEDUP
 
-Before creating any ticket, call `GET /api/companies/{companyId}/issues?q={ticket-title-keywords}` and check for existing non-cancelled issues covering the same scope. If a match exists, reference it instead. This gate runs for every ticket without exception.
+**Before creating any ticket for a story, first call:**
+```
+GET /api/companies/{companyId}/issues?parentId={storyId}
+```
+If **any non-cancelled children** (status: todo, in_progress, blocked, in_review, done) already exist for this story, **stop immediately — do not create any ticket**. The story was already decomposed. Your job is to monitor and unblock the existing tickets, not create new ones.
+
+Only if zero non-cancelled children exist, proceed with ticket creation. Then, for each individual ticket you are about to create, also call `GET /api/companies/{companyId}/issues?q={ticket-title-keywords}` to check for cross-story duplicates. If a match exists, reference it instead.
+
+This gate runs without exception, every time, before touching any story.
 
 ### 2. ONE TICKET = ONE STACK LAYER
 

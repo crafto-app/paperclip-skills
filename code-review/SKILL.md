@@ -13,7 +13,9 @@ description: Formalizes the procedure for reviewing PRs created by dev agents, r
 
 ## When This Skill Applies
 
-This skill applies when a Paperclip issue is assigned to you with status `todo` and the associated PR has label `pr-opened` or `ai-fix-done`.
+This skill applies when a Paperclip issue is assigned to you with status `todo`. That assignment is the trigger — the dev agent reassigns the issue to you after opening a PR (first review) or after pushing a fix (re-review). You do not need to poll GitHub for this.
+
+The associated PR will have label `pr-opened` (first review) or `ai-fix-done` (re-review). Use these labels for context only — they do not replace the Paperclip assignment as the source of truth for your work queue.
 
 ---
 
@@ -79,10 +81,22 @@ gh pr view <number> --repo crafto-app/applications --json reviews --jq '[.review
 
 #### Path A — Changes Needed (round 1 or 2)
 
-1. Post review with `Request changes` on the GitHub PR. Every comment must reference a specific line and suggest a concrete fix.
-2. Apply label `ai-requested-changes`, remove `ai-is-reviewing`.
-3. Assign the Paperclip issue back to the developer — this triggers their heartbeat.
-4. Set issue status to `todo`.
+**Step 1 — Wake the developer (Paperclip, mandatory):**
+Reassign the issue to the dev agent and set status to `todo`. This is what triggers their heartbeat — nothing else does:
+```
+PATCH /api/companies/{companyId}/issues/{issueId}
+{ "assigneeAgentId": "<dev-agent-id>", "status": "todo" }
+```
+The dev agent ID is on the issue (`assigneeAgentId`) — do not guess it.
+
+**Step 2 — Record the review on GitHub (traceability):**
+Post a `CHANGES_REQUESTED` review — not just a comment. Every inline comment must reference a specific line and suggest a concrete fix:
+```bash
+gh pr review <number> --repo crafto-app/applications --request-changes --body "<summary of what must be fixed>"
+gh pr edit <number> --repo crafto-app/applications --add-label "ai-requested-changes" --remove-label "ai-is-reviewing"
+```
+
+> The GitHub review and label are for traceability only. The Paperclip reassignment in Step 1 is the sole mechanism that wakes the dev agent.
 
 #### Path B — Approved
 

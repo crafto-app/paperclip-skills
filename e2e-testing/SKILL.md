@@ -196,6 +196,7 @@ For each acceptance criterion:
    > QA Approved — all acceptance criteria validated, E2E tests written. PR: #\<number\>
 4. Set issue status to `todo`.
 5. Assign to CTO for final validation.
+6. **Stop — this run is complete.** Do not look for additional test tickets. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
 
 **If blocked (bugs found):**
 
@@ -203,6 +204,7 @@ For each acceptance criterion:
 2. Set the test ticket's `blockedByIssueIds` to all newly created bug ticket IDs.
 3. Set the test ticket status to `blocked`.
 4. Do NOT re-run tests until all bug tickets are `done` (Paperclip will wake you automatically when blockers resolve).
+5. **Stop — this run is complete.** Do not look for additional test tickets. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
 
 ---
 

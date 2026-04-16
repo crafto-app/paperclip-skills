@@ -139,6 +139,8 @@ Once the infra change is deployed and verified:
    - **If no app impact**: set the issue status to `done`. Do not reassign — you remain the last assignee as the agent who completed the work.
    - **If app impact**: set the issue status to `done`. Additionally, **create a new Paperclip ticket** describing the application-side changes required (e.g., "update config to use new env var X", "add SDK client for new service Y"). Assign this new ticket to the Lead Dev so it enters the normal specification → decomposition → implementation pipeline.
 
+3. **Stop — this run is complete.** Do not process additional tickets or start monitoring. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
+
 ---
 
 ## Anti-Patterns & Red Flags

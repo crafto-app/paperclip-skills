@@ -140,7 +140,7 @@ If all pass: proceed to Phase 5.
 
 ---
 
-### Phase 5: Handoff
+### Phase 5: Handoff — END OF RUN
 
 **Actions:**
 
@@ -154,7 +154,7 @@ If all pass: proceed to Phase 5.
 - [ ] Issue status set to `todo`
 - [ ] Issue assigned to PO
 
-Handoff complete.
+**Handoff complete — this run is complete.** Do not process additional stories from your inbox. Do not look for more work. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
 
 ---
 

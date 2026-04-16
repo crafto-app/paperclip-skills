@@ -308,7 +308,7 @@ gh pr edit <number> --add-label "<label>" --remove-label "<label>"
 
 ---
 
-## When You Are Done
+## When You Are Done — END OF RUN
 
 Once your implementation is complete and the Verification Checklist passes:
 
@@ -316,8 +316,9 @@ Once your implementation is complete and the Verification Checklist passes:
 2. Add label `pr-opened` to the PR.
 3. Set the Paperclip issue status to **`todo`**.
 4. **Assign the Paperclip issue to the Lead Dev** on Paperclip — this triggers their heartbeat.
-5. **Stop here** — do not merge, do not make further changes.
-6. Wait for the Lead Dev's review — they will reassign the issue to you on Paperclip if changes are needed.
+5. **Stop here — this run is complete.** Do not check for additional tickets. Do not process your inbox. Do not start another task. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
+
+Wait for the Lead Dev's review — they will reassign the issue to you on Paperclip if changes are needed, which will start a new run.
 
 ### Worktree cleanup
 
@@ -355,4 +356,4 @@ If you encounter any of these, stop implementation and escalate:
 1. Post a comment on the ticket describing the issue precisely.
 2. Set the issue status to **`blocked`**.
 3. Assign to the Lead Dev (technical issue) or PO (sequencing issue).
-4. Stop — do not attempt to work around the issue.
+4. **Stop — this run is complete.** Do not attempt to work around the issue. Do not pick up another task. End your response immediately.

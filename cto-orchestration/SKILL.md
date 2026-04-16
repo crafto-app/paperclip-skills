@@ -178,7 +178,7 @@ Do NOT escalate when:
 
 If in doubt: if the blocker can be resolved with code, config, or a technical decision, it is yours. If it requires a human signing into a third-party service, it is the Board's.
 
-### Gate: Is This Issue Done?
+### Gate: Is This Issue Done? — END OF RUN
 
 An issue is done when:
 - The resolution path was followed completely.
@@ -186,6 +186,8 @@ An issue is done when:
 - All blocked agents are unblocked and reassigned.
 - The outcome aligns with V1 goals.
 - Next steps are clear for all involved agents.
+
+**Stop — this run is complete.** Do not process additional issues from your inbox. Do not look for more work. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
 
 ---
 

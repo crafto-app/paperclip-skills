@@ -116,7 +116,7 @@ gh pr edit <number> --repo crafto-app/applications --add-label "ai-requested-cha
 5. Post a comment on the PR:
    > :warning: Review loop — 2 rounds of fixes requested, implementation still does not meet requirements. Core issue: \<description\>. Escalating to CTO. What the implementation does: \<summary\>. What I expect: \<expectation\>.
 
-### Phase 5: Track
+### Phase 5: Track — END OF RUN
 
 After acting, verify the final state is consistent:
 
@@ -125,6 +125,8 @@ After acting, verify the final state is consistent:
 - Paperclip issue assignee matches the action taken.
 
 **Gate:** Labels, status, and assignee are all consistent.
+
+**Stop — this run is complete.** Do not process additional issues from your inbox. Do not look for more PRs to review. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
 
 ---
 

@@ -236,7 +236,7 @@ Assign tickets to dev agents respecting WIP limits and dependency order.
 - [ ] Test ticket assigned to QA (status `blocked` until all impl tickets are done)
 - [ ] Story issue status set to `done`
 
-→ Assignment complete.
+**Assignment complete — this run is complete.** Do not process additional stories from your inbox. Do not look for more work. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
 
 ---
 

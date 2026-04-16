@@ -130,7 +130,7 @@ Before finalising a story, verify:
 - [ ] All stories assigned to Lead Dev
 - [ ] Priority order communicated in batch comment
 
-> Handoff complete.
+**Handoff complete — this run is complete.** Do not look for additional Board requests. Do not start another task. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
 
 ---
 

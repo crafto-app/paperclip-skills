@@ -67,13 +67,15 @@ This triggers Paperclip to resolve `blockedByIssueIds` on dependent tickets. Whe
 
 **Gate:** ticket status is `done`.
 
-### Phase 4 — Confirm
+### Phase 4 — Confirm — END OF RUN
 
 Post a brief comment on the Paperclip issue:
 
 > ✅ PR #\<number\> merged to main. Implementation ticket closed.
 
 **Gate:** confirmation posted.
+
+**Stop — this run is complete.** Do not process additional issues from your inbox. Do not look for more PRs to merge. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
 
 ---
 

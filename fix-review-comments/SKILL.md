@@ -67,14 +67,14 @@ Re-run the full Verification Checklist:
 
 **Gate:** All checks pass.
 
-### Phase 5: Hand Back
+### Phase 5: Hand Back — END OF RUN
 
 1. Reply to each GitHub PR comment explaining what you changed (or why you disagree).
 2. Push the fix commit.
 3. Apply label `ai-fix-done`, remove `ai-is-fixing`.
 4. Assign Paperclip issue back to Lead Dev — triggers their heartbeat.
 5. Set issue status to `todo`.
-6. Stop — do not make further changes.
+6. **Stop — this run is complete.** Do not check for additional tickets. Do not process your inbox. Do not start another task. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
 
 **Gate:** PR handed back, labels correct, issue reassigned.
 

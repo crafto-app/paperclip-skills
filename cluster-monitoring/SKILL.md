@@ -74,7 +74,7 @@ kubectl get certificates -A
 
 **Gate:** All certs valid for >14 days, or issue created.
 
-### Check 5: Report
+### Check 5: Report — END OF RUN
 
 If all checks passed with no issues:
 
@@ -83,6 +83,8 @@ If all checks passed with no issues:
 If any issue was found and handled:
 
 > ⚠️ Heartbeat — issue found: `<brief description>`. Status: `<resolved/escalated/monitoring>`. See issue `#<id>`.
+
+**Stop — this run is complete.** Do not process infra tickets or other work. End your response immediately so Paperclip can terminate this run cleanly and start the next queued run.
 
 ---
 
